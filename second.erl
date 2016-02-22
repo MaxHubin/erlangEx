@@ -4,8 +4,7 @@
 -export([max_path/0]).
 
 max_path() -> TriangleList = lists:reverse(read_text_file('triangle.txt')),
-  MaxPoint = by_row(hd(TriangleList), tl(TriangleList)),
-  io:write(MaxPoint).
+  by_row(hd(TriangleList), tl(TriangleList)).
 
 %% read_file
 read_text_file(Filename) ->
@@ -23,7 +22,6 @@ read_text(Device, Accum) ->
 
 by_row(LastRowPoints, []) -> LastRowPoints;
 by_row(LastRowPoints, [CurrentRow | UpTriangleList]) -> CurrentRowPoints = add_point(CurrentRow, 1, LastRowPoints),
-  by_row(CurrentRow, UpTriangleList),
   by_row(CurrentRowPoints, UpTriangleList).
 
 add_point([], _Position, _LastRow) -> [];
